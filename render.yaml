@@ -5,12 +5,12 @@ services:
   - type: web
     name: diesel-crm-backend
     runtime: node
-    repo: https://github.com/Vletch111/diesel-crm.git  
+    repo: https://github.com/Vletch111/diesel-crm.git  # ✅ Replace with your GitHub URL
     buildCommand: npm install && npx knex migrate:latest
     startCommand: npm run dev
     plan: free
     autoDeploy: true
-    rootDirectory: server  
+    rootDirectory: server 
     envVars:
       - key: DATABASE_URL
         fromDatabase:
