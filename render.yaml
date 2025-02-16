@@ -5,7 +5,7 @@ services:
   - type: web
     name: diesel-crm-backend
     runtime: node
-    repo: https://github.com/yourusername/diesel-crm.git
+    repo: https://github.com/your-github-username/diesel-crm.git
     buildCommand: npm install && npx knex migrate:latest
     startCommand: npm run dev
     plan: free
@@ -20,7 +20,7 @@ services:
   - type: web
     name: diesel-crm-frontend
     runtime: node
-    repo: https://github.com/yourusername/diesel-crm.git
+    repo: https://github.com/your-github-username/diesel-crm.git
     buildCommand: npm install && npm run build
     startCommand: npx serve -s build -l 3000
     plan: free
