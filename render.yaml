@@ -16,7 +16,7 @@ services:
           name: diesel-crm-db
           property: connectionString
 
-  # 🚀 Frontend (React)
+ # 🚀 Frontend (React) 
 - type: web
   name: diesel-crm-frontend
   runtime: node
