@@ -1,37 +1,37 @@
 # render.yaml: Blueprint for full-stack deployment on Render
 
 services:
-  # 🚀 Backend (Node.js + PostgreSQL)
+  # 🚀 Backend Service (Node.js + PostgreSQL)
   - type: web
     name: diesel-crm-backend
     runtime: node
-    repo: https://github.com/Vletch111/diesel-crm   
+    repo: https://github.com/Vletch111/diesel-crm.git  # ✅ Replace with your GitHub URL
     buildCommand: npm install && npx knex migrate:latest
     startCommand: npm run dev
     plan: free
     autoDeploy: true
+    rootDirectory: server  # ✅ Path to backend folder if in subdirectory
     envVars:
       - key: DATABASE_URL
         fromDatabase:
           name: diesel-crm-db
           property: connectionString
+      - key: PORT
+        value: 5000
 
- # 🚀 Frontend (React) 
-- type: web
-  name: diesel-crm-frontend
-  runtime: node
-  repo: https://github.com/Vletch111/diesel-crm.git
-  buildCommand: npm install && npm run build
-  startCommand: npx serve -s build -l 3000
-  plan: free
-  autoDeploy: true
-  envVars:
-    - key: REACT_APP_BACKEND_URL
-      value: https://diesel-crm-backend.onrender.com
-  buildFilter:
-    paths:
-      - "frontend/**"
-  rootDirectory: frontend
+  # 🚀 Frontend Service (React)
+  - type: web
+    name: diesel-crm-frontend
+    runtime: node
+    repo: https://github.com/Vletch111/diesel-crm.git  # ✅ Replace with your GitHub URL
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s build -l 3000
+    plan: free
+    autoDeploy: true
+    rootDirectory: frontend  # ✅ Path to frontend folder if in subdirectory
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        value: https://diesel-crm-backend.onrender.com
 
 databases:
   # 🗄️ PostgreSQL Database
