@@ -20,7 +20,8 @@ services:
   - type: web
     name: diesel-crm-frontend
     runtime: node
-    repo: https://github.com/Vletch111/diesel-crm/tree/main    buildCommand: npm install && npm run build
+    repo: https://github.com/Vletch111/diesel-crm/tree/main  
+    buildCommand: npm install && npm run build
     startCommand: npx serve -s build -l 3000
     plan: free
     autoDeploy: true
