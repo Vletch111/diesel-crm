@@ -17,17 +17,21 @@ services:
           property: connectionString
 
   # 🚀 Frontend (React)
-  - type: web
-    name: diesel-crm-frontend
-    runtime: node
-    repo: https://github.com/Vletch111/diesel-crm 
-    buildCommand: npm install && npm run build
-    startCommand: npx serve -s build -l 3000
-    plan: free
-    autoDeploy: true
-    envVars:
-      - key: REACT_APP_BACKEND_URL
-        value: https://diesel-crm-backend.onrender.com
+- type: web
+  name: diesel-crm-frontend
+  runtime: node
+  repo: https://github.com/Vletch111/diesel-crm.git
+  buildCommand: npm install && npm run build
+  startCommand: npx serve -s build -l 3000
+  plan: free
+  autoDeploy: true
+  envVars:
+    - key: REACT_APP_BACKEND_URL
+      value: https://diesel-crm-backend.onrender.com
+  buildFilter:
+    paths:
+      - "frontend/**"
+  rootDirectory: frontend
 
 databases:
   # 🗄️ PostgreSQL Database
