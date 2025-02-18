@@ -1,5 +1,5 @@
----
 services:
+  # 🚀 Backend (Node.js + PostgreSQL)
   - type: web
     name: diesel-crm-backend
     runtime: node
@@ -8,7 +8,9 @@ services:
     startCommand: npm run dev
     plan: free
     autoDeploy: true
-    rootDirectory: server
+    buildFilter:
+      paths:
+        - "server/**"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -16,6 +18,8 @@ services:
           property: connectionString
       - key: PORT
         value: 5000
+
+  # 🚀 Frontend (React)
   - type: web
     name: diesel-crm-frontend
     runtime: node
@@ -24,11 +28,15 @@ services:
     startCommand: npx serve -s build -l 3000
     plan: free
     autoDeploy: true
-    rootDirectory: frontend
+    buildFilter:
+      paths:
+        - "frontend/**"
     envVars:
       - key: REACT_APP_BACKEND_URL
         value: https://diesel-crm-backend.onrender.com
+
 databases:
+  # 🗄️ PostgreSQL Database
   - name: diesel-crm-db
     databaseName: diesel_crm
     user: admin
